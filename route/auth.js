@@ -1,5 +1,6 @@
 const bypass = require("../middleware/bypass");
 const AdvisorUser = require("../models/AdvisorUser");
+const sendEmail = require("../utils/sendEmail");
 const {
     hashPassword,matchPassword
 } = require("../utils/services")
@@ -31,7 +32,7 @@ router.post("/signup",bypass,async (req,res)=>{
     })
 
     console.log(newUser);
-
+    sendEmail(newUser.email,'Test','Hello')
     res.status(200).json({ success:1 ,message:"Kindly Verify your email!!"});
 })
 
